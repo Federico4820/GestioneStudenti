@@ -1,0 +1,13 @@
+﻿using GestioneStudenti.Models;
+using Microsoft.EntityFrameworkCore;
+using System;
+
+namespace GestioneStudenti.Data
+{
+    public class StudenteDbContext : DbContext
+    {
+        public StudenteDbContext(DbContextOptions<StudenteDbContext> options) : base(options) { }
+
+        public DbSet<Studente> Studenti { get; set; }
+    }
+}
