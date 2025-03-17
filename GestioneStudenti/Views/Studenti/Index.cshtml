@@ -1,0 +1,43 @@
+﻿@using GestioneStudenti.Models;
+@using Microsoft.EntityFrameworkCore;
+@model IEnumerable<GestioneStudenti.ViewModels.StudenteViewModel>
+
+@{
+    ViewData["Title"] = "Elenco Studenti";
+}
+
+<h2>Elenco Studenti</h2>
+
+<div id="studenti-list">
+    @await Html.PartialAsync("_StudentiList", Model)
+</div>
+
+<button id="create-button">Aggiungi Studente</button>
+
+<div id="create-form"></div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $("#create-button").click(function () {
+                $.get("/Studenti/Create", function (data) {
+                    $("#create-form").html(data);
+                });
+            });
+
+            $(document).on("submit", "#create-form form", function (event) {
+                event.preventDefault();
+                var form = $(this);
+                $.ajax({
+                    url: form.attr("action"),
+                    method: form.attr("method"),
+                    data: form.serialize(),
+                    success: function (response) {
+                        $("#studenti-list").html(response);
+                        $("#create-form").empty();
+                    }
+                });
+            });
+        });
+    </script>
+}

@@ -1,0 +1,17 @@
+﻿@model GestioneStudenti.Models.Studente
+
+<form asp-action="Create" method="post">
+    <label>Nome:</label>
+    <input type="text" name="Nome" required />
+
+    <label>Cognome:</label>
+    <input type="text" name="Cognome" required />
+
+    <label>Data di Nascita:</label>
+    <input type="date" name="DataDiNascita" required />
+
+    <label>Email:</label>
+    <input type="email" name="Email" required />
+
+    <button type="submit">Salva</button>
+</form>

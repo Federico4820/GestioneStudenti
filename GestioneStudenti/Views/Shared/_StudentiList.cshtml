@@ -1,0 +1,21 @@
+﻿@model IEnumerable<GestioneStudenti.ViewModels.StudenteViewModel>
+
+<table>
+    <thead>
+        <tr>
+            <th>Nome Completo</th>
+            <th>Data di Nascita</th>
+            <th>Email</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var studente in Model)
+        {
+            <tr>
+                <td>@studente.NomeCompleto</td>
+                <td>@studente.DataDiNascita</td>
+                <td>@studente.Email</td>
+            </tr>
+        }
+    </tbody>
+</table>

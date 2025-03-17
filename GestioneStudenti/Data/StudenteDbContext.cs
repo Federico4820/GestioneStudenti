@@ -1,6 +1,5 @@
 ﻿using GestioneStudenti.Models;
 using Microsoft.EntityFrameworkCore;
-using System;
 
 namespace GestioneStudenti.Data
 {
