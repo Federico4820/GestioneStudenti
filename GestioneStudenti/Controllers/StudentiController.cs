@@ -8,23 +8,34 @@ namespace GestioneStudenti.Controllers
     public class StudentiController : Controller
     {
         private readonly IStudenteService _studenteService;
+        private readonly ILogger<StudentiController> _logger;
 
-        public StudentiController(IStudenteService studenteService)
+        public StudentiController(IStudenteService studenteService, ILogger<StudentiController> logger)
         {
             _studenteService = studenteService;
+            _logger = logger;
         }
 
         public async Task<IActionResult> Index()
         {
-            var studenti = await _studenteService.GetAllAsync();
-            var viewModel = studenti.Select(s => new StudenteViewModel
+            try
             {
-                Id = s.Id,
-                NomeCompleto = $"{s.Nome} {s.Cognome}",
-                DataDiNascita = s.DataDiNascita.ToString("dd/MM/yyyy"),
-                Email = s.Email
-            });
-            return View(viewModel);
+                _logger.LogInformation("Accesso alla pagina Index degli studenti.");
+                var studenti = await _studenteService.GetAllAsync();
+                var viewModel = studenti.Select(s => new StudenteViewModel
+                {
+                    Id = s.Id,
+                    NomeCompleto = $"{s.Nome} {s.Cognome}",
+                    DataDiNascita = s.DataDiNascita.ToString("dd/MM/yyyy"),
+                    Email = s.Email
+                });
+                return View(viewModel);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Errore durante il caricamento della pagina Index.");
+                return View("Error");
+            }
         }
 
         public IActionResult Create()
