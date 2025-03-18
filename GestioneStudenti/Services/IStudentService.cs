@@ -6,5 +6,8 @@ namespace GestioneStudenti.Services
     {
         Task<List<Studente>> GetAllAsync();
         Task AddAsync(Studente studente);
+        Task<Studente> GetByIdAsync(Guid id);
+        Task UpdateAsync(Studente studente);
+        Task DeleteAsync(Guid id);
     }
 }

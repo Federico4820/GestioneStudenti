@@ -1,11 +1,12 @@
 ﻿@model IEnumerable<GestioneStudenti.ViewModels.StudenteViewModel>
 
-<table>
+<table class="table table-striped">
     <thead>
         <tr>
             <th>Nome Completo</th>
             <th>Data di Nascita</th>
             <th>Email</th>
+            <th>Azioni</th>
         </tr>
     </thead>
     <tbody>
@@ -15,6 +16,10 @@
                 <td>@studente.NomeCompleto</td>
                 <td>@studente.DataDiNascita</td>
                 <td>@studente.Email</td>
+                <td>
+                    <button class="btn btn-warning" onclick="showUpdateForm('@studente.Id')">Modifica</button>
+                    <button class="btn btn-danger" onclick="deleteStudente('@studente.Id')">Elimina</button>
+                </td>
             </tr>
         }
     </tbody>

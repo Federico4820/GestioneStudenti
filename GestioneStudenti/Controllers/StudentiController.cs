@@ -50,5 +50,34 @@ namespace GestioneStudenti.Controllers
             }
             return PartialView("_Create", studente);
         }
+
+        public async Task<IActionResult> Update(Guid id)
+        {
+            var studente = await _studenteService.GetByIdAsync(id);
+            if (studente == null) return NotFound();
+            return PartialView("_Update", studente);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Update(Studente studente)
+        {
+            if (ModelState.IsValid)
+            {
+                await _studenteService.UpdateAsync(studente);
+                var studenti = await _studenteService.GetAllAsync();
+                return PartialView("_StudentiList", studenti);
+            }
+            return PartialView("_Update", studente);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            await _studenteService.DeleteAsync(id);
+            var studenti = await _studenteService.GetAllAsync();
+            return PartialView("_StudentiList", studenti);
+        }
+
+
     }
 }

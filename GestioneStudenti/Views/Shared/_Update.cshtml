@@ -4,28 +4,29 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Aggiungi Studente</h5>
+                <h5 class="modal-title">Modifica Studente</h5>
                 <button type="button" class="btn-close" onclick="$('#form-container').empty();"></button>
             </div>
             <div class="modal-body">
-                <form onsubmit="return submitForm(this);" action="/Studenti/Create" method="post">
+                <form onsubmit="return submitForm(this);" action="/Studenti/Update" method="post">
+                    <input type="hidden" name="Id" value="@Model.Id" />
                     <div class="mb-3">
                         <label>Nome</label>
-                        <input type="text" name="Nome" class="form-control" required>
+                        <input type="text" name="Nome" class="form-control" value="@Model.Nome" required>
                     </div>
                     <div class="mb-3">
                         <label>Cognome</label>
-                        <input type="text" name="Cognome" class="form-control" required>
+                        <input type="text" name="Cognome" class="form-control" value="@Model.Cognome" required>
                     </div>
                     <div class="mb-3">
                         <label>Data di Nascita</label>
-                        <input type="date" name="DataDiNascita" class="form-control" required>
+                        <input type="date" name="DataDiNascita" class="form-control" value="@Model.DataDiNascita.ToString("yyyy-MM-dd")" required>
                     </div>
                     <div class="mb-3">
                         <label>Email</label>
-                        <input type="email" name="Email" class="form-control" required>
+                        <input type="email" name="Email" class="form-control" value="@Model.Email" required>
                     </div>
-                    <button type="submit" class="btn btn-success">Salva</button>
+                    <button type="submit" class="btn btn-success">Aggiorna</button>
                 </form>
             </div>
         </div>

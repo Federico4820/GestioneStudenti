@@ -6,38 +6,48 @@
     ViewData["Title"] = "Elenco Studenti";
 }
 
-<h2>Elenco Studenti</h2>
+<div class="container mt-3">
+    <h2>Gestione Studenti</h2>
+    <button class="btn btn-primary mb-3" onclick="showCreateForm()">Aggiungi Studente</button>
 
-<div id="studenti-list">
-    @await Html.PartialAsync("_StudentiList", Model)
+    <div id="studenti-list">
+        @await Html.PartialAsync("_StudentiList", Model)
+    </div>
+
+    <div id="form-container"></div>
 </div>
-
-<button id="create-button">Aggiungi Studente</button>
-
-<div id="create-form"></div>
 
 @section Scripts {
     <script>
-        $(document).ready(function () {
-            $("#create-button").click(function () {
-                $.get("/Studenti/Create", function (data) {
-                    $("#create-form").html(data);
-                });
+        function showCreateForm() {
+            $.get("/Studenti/Create", function (data) {
+                $("#form-container").html(data);
             });
+        }
 
-            $(document).on("submit", "#create-form form", function (event) {
-                event.preventDefault();
-                var form = $(this);
-                $.ajax({
-                    url: form.attr("action"),
-                    method: form.attr("method"),
-                    data: form.serialize(),
-                    success: function (response) {
-                        $("#studenti-list").html(response);
-                        $("#create-form").empty();
-                    }
-                });
+        function showUpdateForm(id) {
+            $.get("/Studenti/Update/" + id, function (data) {
+                $("#form-container").html(data);
             });
-        });
+        }
+
+        function deleteStudente(id) {
+            $.post("/Studenti/Delete", { id: id }, function (data) {
+                $("#studenti-list").html(data);
+            });
+        }
+
+        function submitForm(form) {
+            $.ajax({
+                url: form.action,
+                type: form.method,
+                data: $(form).serialize(),
+                success: function (data) {
+                    $("#studenti-list").html(data);
+                    $("#form-container").empty();
+                }
+            });
+            return false;
+        }
     </script>
 }
