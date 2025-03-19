@@ -1,0 +1,11 @@
+﻿@model GestioneStudenti.ViewModels.RegisterViewModel;
+
+<form asp-controller="Account" asp-action="Register">
+    <input asp-for="@Model.FirstName" />
+    <input asp-for="@Model.LastName" />
+    <input asp-for="@Model.Email" />
+    <input type="date" asp-for="@Model.BirthDate" />
+    <input type="password" asp-for="@Model.Password" />
+    <input type="password" asp-for="@Model.ConfirmPassword" />
+    <button>Login</button>
+</form>

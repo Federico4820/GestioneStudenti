@@ -1,0 +1,7 @@
+﻿@model GestioneStudenti.ViewModels.LoginViewModel;
+
+<form asp-controller="Account" asp-action="Login">
+    <input asp-for="@Model.Email" />
+    <input asp-for="@Model.Password" />
+    <button>Login</button>
+</form>

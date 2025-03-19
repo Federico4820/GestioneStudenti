@@ -63,14 +63,13 @@ namespace GestioneStudenti.Services
         {
             try
             {
-                studente.Id = Guid.NewGuid();
-                _context.Add(studente);
+                _context.Update(studente);
                 await _context.SaveChangesAsync();
-                _logger.LogInformation($"Studente aggiunto: {studente.Nome} {studente.Cognome}");
+                _logger.LogInformation($"Studente aggiornato: {studente.Nome} {studente.Cognome}");
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, $"Errore durante l'aggiunta dello studente: {studente.Nome} {studente.Cognome}");
+                _logger.LogError(ex, $"Errore durante l'aggiornamento dello studente: {studente.Nome} {studente.Cognome}");
                 throw;
             }
         }
