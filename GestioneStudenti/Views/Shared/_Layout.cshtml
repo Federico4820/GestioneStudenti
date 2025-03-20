@@ -22,7 +22,7 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
-                        @if (@User.Identity.IsAuthenticated && @User.IsInRole("Admin"))
+                        @if (@User.Identity.IsAuthenticated && @User.IsInRole("Docente"))
                         {
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-controller="Studenti" asp-action="Index">Studenti</a>

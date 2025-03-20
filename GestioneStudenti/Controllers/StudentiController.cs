@@ -66,7 +66,7 @@ namespace GestioneStudenti.Controllers
         {
             var studente = await _studenteService.GetByIdAsync(id);
             if (studente == null) return NotFound();
-            return PartialView("_Update", studente);
+            return PartialView("_StudentiList", studente);
         }
 
         [HttpPost]

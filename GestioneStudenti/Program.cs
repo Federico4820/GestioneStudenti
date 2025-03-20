@@ -70,7 +70,7 @@ builder.Services.AddAuthentication(
         options.AccessDeniedPath = "/Account/Login"; // Pagina di accesso negato
         options.Cookie.HttpOnly = true; // Impedisce l'accesso ai cookie tramite JavaScript per motivi di sicurezza
         options.ExpireTimeSpan = TimeSpan.FromHours(1); // Durata della sessione di autenticazione
-        options.Cookie.Name = "EcommerceLiveEfCore"; // Nome del cookie per l'autenticazione
+        options.Cookie.Name = "GestioneStudenti"; // Nome del cookie per l'autenticazione
     });
 
 builder.Services.AddScoped<LoggerService>(); // Servizio per la gestione dei log

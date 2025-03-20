@@ -116,7 +116,7 @@ namespace GestioneStudenti.Controllers
             var user = await _userManager.FindByEmailAsync(newUser.Email);
 
             // Aggiunge l'utente al ruolo "User"
-            await _userManager.AddToRoleAsync(user, "User");
+            await _userManager.AddToRoleAsync(user, "Docente");
 
             // Reindirizza alla pagina dei prodotti dopo la registrazione completata con successo
             return RedirectToAction("Index", "Home");
